@@ -49,7 +49,7 @@ def infer_image():
     class_mapping = {0: 'CNV', 1: 'DME', 2: 'DRUSEN', 3: 'NORMAL'}
     prediction_class = class_mapping.get(prediction, "Unknown")
     
-    return render_template('predict.html', prediction=prediction_class, class_probabilities=predictions)
+    return render_template('predict.html', prediction=prediction_class)
 
 
 
