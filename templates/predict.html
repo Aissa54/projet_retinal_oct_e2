@@ -2,8 +2,63 @@
 <html>
   <head>
     <title>Prediction</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
+      }
+      .result {
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 20px;
+        text-align: center;
+        width: 50%;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Prediction: {{ prediction }}</h1>
+    <div class="container">
+      <h1>Résultat de la prédiction</h1>
+      <div
+        class="result"
+        style="background-color:
+        {% if prediction == 'NORMAL' %}
+        lightgreen
+        {% elif prediction == 'CNV' %}
+        tomato
+        {% elif prediction == 'DME' %}
+        lightblue
+        {% elif prediction == 'DRUSEN' %}
+        lightyellow
+        {% endif %};"
+      >
+        <p>
+          Le modèle prédit pour cette image : <strong>{{ prediction }}</strong>
+        </p>
+        {% if prediction == 'NORMAL' %}
+        <p>
+          Aucun signe de détérioration ou de maladies de la rétine n'a été
+          détecté
+        </p>
+        {% elif prediction == 'CNV' %}
+        <p>Une dégénérescence liée à l'âge (CNV) a été détectée</p>
+        {% elif prediction == 'DME' %}
+        <p>Un épanchement de liquide (DME) a été détecté</p>
+        {% elif prediction == 'DRUSEN' %}
+        <p>Des dépôts graisseux (Drusen) ont été détectés</p>
+        {% endif %}
+      </div>
+    </div>
   </body>
 </html>

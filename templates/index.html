@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Retinal OCT prediction</title>
+    <meta charset="UTF-8" />
+    <title>Prédiction de pathologies rétiniennes</title>
+    <style>
+      /* Styles personnalisés */
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+        color: #333;
+      }
+      .form-container {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 50px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+          0 6px 6px rgba(0, 0, 0, 0.23);
+      }
+      form {
+        margin-top: 30px;
+      }
+      input[type="file"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        margin-top: 20px;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #555;
+      }
+    </style>
   </head>
   <body>
-    <form action="/predict" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <input type="submit" value="Predict" />
-    </form>
+    <h1>Chargement d'une imagerie par OCT et affichage de la prédiction</h1>
+    <div class="form-container">
+      <form
+        action="{{ url_for('infer_image') }}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="file" />
+        <input type="submit" value="Prédire" />
+      </form>
+    </div>
   </body>
 </html>
